@@ -1,0 +1,16 @@
+<div class="md-block" flesx-gt-sm>
+    <mat-form-field>
+        <input matInput placeholder="Email" type="email" [formControl]="emailControl" (keyup.enter)="signup()">
+      </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Username" [formControl]="usernameControl" (keyup.enter)="signup()">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Password" [formControl]="passwordControl" type="password" (keyup.enter)="signup()">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Confirm Password" [formControl]="passwordConfirmControl" type="password" (keyup.enter)="signup()">
+  </mat-form-field>
+</div>
+<button mat-raised-button color="primary" (click)="signup()">Sign up</button>

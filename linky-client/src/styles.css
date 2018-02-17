@@ -1,0 +1,14 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.sortable-ghost {
+  border: 5px solid;
+}
+
+.sortable-chosen {
+  border: 5px solid black;
+}
+
+.sortable-drag {
+  border: 5px solid black;
+}
+

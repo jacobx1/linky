@@ -1,0 +1,11 @@
+<div class="md-block" flesx-gt-sm>
+  <mat-form-field>
+    <input matInput placeholder="Username" [formControl]="usernameControl" (keyup.enter)="login()">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Password" [formControl]="passwordControl" type="password" (keyup.enter)="login()">
+  </mat-form-field>
+</div>
+<button mat-raised-button color="primary" (click)="login()">Log in</button>
+<button mat-raised-button color="accent" (click)="signup()">Sign up</button>

@@ -1,0 +1,19 @@
+:host {
+  flex-shrink: 1;
+  flex-grow: 1;
+  flex-basis: 15em;
+  min-width: 15em;
+  max-width: 40em;
+  align-self: stretch;
+}
+
+.link-card {
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.link-actions {
+  margin-top: auto;
+}
