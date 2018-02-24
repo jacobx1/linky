@@ -1,6 +1,6 @@
 # linky
 
-[![CircleCI](https://circleci.com/gh/jacobx1/linky.svg?style=svg&circle-token=ab57415f91d75e2f199ce4f98b36e1497cbd1be7)](https://circleci.com/gh/jacobx1/linky)
+[ ![Codeship Status for jacobx1/linky](https://app.codeship.com/projects/1ea2f9c0-fa8f-0135-6fd6-467245c6186e/status?branch=master)](https://app.codeship.com/projects/278835)
 
 Bookmark store built on angular and node
 
@@ -41,7 +41,7 @@ npx run build
 
 Set the following envars - optional unless otherwise noted
 
-- `DB` -  - database name (be sure to create it first)
+- `DB` - database name (be sure to create it first)
 - `DB_HOST` - database hostname
 - `DB_PORT` - database port
 - `DB_USER` - ***required*** - MariaDB user with access to `linky` (or custom db name)
