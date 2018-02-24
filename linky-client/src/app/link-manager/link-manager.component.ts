@@ -4,6 +4,7 @@ import LinkyClient from '../../api/linkyClient';
 import linkyClient from '../../api/linkyClient';
 import { SortablejsOptions } from 'angular-sortablejs/dist';
 import { Router, ActivatedRoute } from '@angular/router';
+import { isTouchDevice } from '../../utils/DeviceCheck';
 
 @Component({
   selector: 'app-link-manager',
@@ -25,7 +26,8 @@ export class LinkManagerComponent implements OnInit {
     this.options = {
       onEnd: event => {
         this.changeItemPosition(event.oldIndex, event.newIndex);
-      }
+      },
+      delay: isTouchDevice() ? 200 : 0,
     };
 
     linkyClient
