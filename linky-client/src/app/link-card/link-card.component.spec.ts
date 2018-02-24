@@ -1,4 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  MatButtonModule,
+  MatCardModule,
+} from '@angular/material';
 
 import { LinkCardComponent } from './link-card.component';
 
@@ -9,7 +13,11 @@ describe('LinkCardComponent', () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        declarations: [LinkCardComponent]
+        declarations: [LinkCardComponent],
+        imports: [
+          MatButtonModule,
+          MatCardModule,
+        ]
       }).compileComponents();
     })
   );

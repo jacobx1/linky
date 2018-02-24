@@ -39,7 +39,19 @@ function dev() {
   run('ts-node-dev src/index.js', {async: true});
 }
 
+function test() {
+  goto.client();
+  run('ng test --watch=false');
+}
+
+function coverage() {
+  goto.client();
+  run('ng test --watch=false --code-coverage');
+}
+
 module.exports = {
   build,
-  dev
+  dev,
+  test,
+  coverage
 }

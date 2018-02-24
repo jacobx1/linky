@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LinkInputComponent } from './link-input.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule, MatButtonModule, MatFormFieldModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('LinkInputComponent', () => {
   let component: LinkInputComponent;
@@ -9,7 +12,15 @@ describe('LinkInputComponent', () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        declarations: [LinkInputComponent]
+        declarations: [LinkInputComponent],
+        imports: [
+          FormsModule,
+          MatInputModule,
+          MatButtonModule,
+          MatFormFieldModule,
+          BrowserAnimationsModule,
+          ReactiveFormsModule
+        ]
       }).compileComponents();
     })
   );
