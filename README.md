@@ -1,6 +1,7 @@
 # linky
 
 [ ![Codeship Status for jacobx1/linky](https://app.codeship.com/projects/1ea2f9c0-fa8f-0135-6fd6-467245c6186e/status?branch=master)](https://app.codeship.com/projects/278835)
+[![Coverage Status](https://coveralls.io/repos/github/jacobx1/linky/badge.svg?branch=master)](https://coveralls.io/github/jacobx1/linky?branch=master)
 
 Bookmark store built on angular and node
 
