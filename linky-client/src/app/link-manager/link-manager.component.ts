@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import link from '../model/link';
-import LinkyClient from '../../api/linkyClient';
-import linkyClient from '../../api/linkyClient';
+import { LinkyClient, handleRequestReject } from '../../api/linkyClient';
 import { SortablejsOptions } from 'angular-sortablejs/dist';
 import { Router, ActivatedRoute } from '@angular/router';
 import { isTouchDevice } from '../../utils/DeviceCheck';
@@ -30,20 +29,13 @@ export class LinkManagerComponent implements OnInit {
       delay: isTouchDevice() ? 200 : 0,
     };
 
-    linkyClient
+    LinkyClient
       .get('/links')
       .then(resp => {
         if (resp.statusCode === 200) {
           this.links = JSON.parse(resp.body);
-        } else if (resp.statusCode === 401) {
-          this.router.navigate(['/login']);
         }
-      })
-      .catch(err => {
-        if (err.statusCode === 401) {
-          this.router.navigate(['/login']);
-        }
-      });
+      }).catch(handleRequestReject);
   }
 
   title = 'app';
@@ -52,17 +44,17 @@ export class LinkManagerComponent implements OnInit {
 
   async changeItemPosition(oldIndex, newIndex) {
     const _link = this.links[newIndex];
-    await linkyClient.patch(`/links/${_link.id}`, {
+    await LinkyClient.patch(`/links/${_link.id}`, {
       json: {
         position: newIndex
       }
-    });
+    }).catch(handleRequestReject);
   }
 
   async savedLink(url: string) {
     this.loading = true;
     try {
-      const resp = await linkyClient.post('/links', { json: { url } });
+      const resp = await LinkyClient.post('/links', { json: { url } }).catch(handleRequestReject);
       this.links = resp.body;
     } finally {
       this.loading = false;
@@ -70,7 +62,7 @@ export class LinkManagerComponent implements OnInit {
   }
 
   async deleteLink(l: link) {
-    await linkyClient.del(`/links/${l.id}`);
+    await LinkyClient.del(`/links/${l.id}`).catch(handleRequestReject);
     this.links = this.links.filter(lk => lk.id != l.id);
   }
 }

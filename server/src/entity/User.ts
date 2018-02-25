@@ -20,6 +20,8 @@ export class User {
 
   @Column() activated: boolean;
 
+  @Column() verifyKey: string;
+
   @OneToMany(type => Bookmark, bookmark => bookmark.owner)
   bookmarks: Promise<Bookmark[]>;
 

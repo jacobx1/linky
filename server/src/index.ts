@@ -8,6 +8,7 @@ import * as cors from 'cors';
 import * as Auth from './auth';
 import LinksRoute from './routes/links';
 import DbConfig from './dao/config';
+import { VerifyRoute } from './routes/verify';
 
 const CORS_ORIGIN = process.env.CORS_ORIGIN;
 
@@ -33,8 +34,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 Auth.configureApp(app, '/api/login', '/api/signup');
+app.get('/api/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
 
 app.use('/api/links', LinksRoute);
+app.use('/api/verify', VerifyRoute);
 
 app.listen(PORT, HOST, async () => {
   await createConnection(DbConfig());

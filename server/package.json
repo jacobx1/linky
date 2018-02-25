@@ -10,6 +10,7 @@
    "author": "",
    "license": "MIT",
    "dependencies": {
+      "aws-sdk": "^2.202.0",
       "body-parser": "^1.18.2",
       "cheerio": "^1.0.0-rc.2",
       "compression": "^1.7.1",
@@ -24,20 +25,23 @@
       "reflect-metadata": "^0.1.10",
       "request": "^2.83.0",
       "request-promise": "^4.2.2",
-      "typeorm": "0.1.12"
+      "tsconfig": "^7.0.0",
+      "typeorm": "0.1.12",
+      "uuid": "^3.2.1"
    },
    "devDependencies": {
-      "ts-node": "3.3.0",
-      "@types/node": "^8.0.29",
-      "typescript": "2.5.2",
       "@types/body-parser": "^1.16.8",
       "@types/cheerio": "^0.22.7",
       "@types/compression": "0.0.35",
       "@types/cookie-parser": "^1.4.1",
       "@types/express": "^4.11.1",
       "@types/express-session": "^1.15.8",
+      "@types/node": "^8.0.29",
       "@types/passport": "^0.4.2",
       "@types/passport-local": "^1.0.32",
-      "@types/request-promise": "^4.1.41"
+      "@types/request-promise": "^4.1.41",
+      "@types/uuid": "^3.4.3",
+      "ts-node": "3.3.0",
+      "typescript": "2.5.2"
    }
 }

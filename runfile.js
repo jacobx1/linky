@@ -31,12 +31,15 @@ function build() {
   buildServer();
 }
 
-function dev() {
+async function dev() {
   goto.client();
-  run('ng serve --open', {async: true});
+  const client = run('ng serve --open', {async: true});
   
   goto.serverBuild();
-  run('ts-node-dev src/index.js', {async: true});
+  const server = run('ts-node-dev src/index.js', {async: true});
+
+  await client;
+  await server;
 }
 
 function test() {

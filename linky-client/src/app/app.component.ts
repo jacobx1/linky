@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import link from './model/link';
-import LinkyClient from '../api/linkyClient';
-import linkyClient from '../api/linkyClient';
 import { SortablejsOptions } from 'angular-sortablejs/dist';
 import { Router, ActivatedRoute } from '@angular/router';
 

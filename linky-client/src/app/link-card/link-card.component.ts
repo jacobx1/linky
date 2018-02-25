@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import link from '../model/link';
 import { MatIconRegistry } from '@angular/material';
-import linkyClient from '../../api/linkyClient';
 
 @Component({
   selector: 'app-link-card',

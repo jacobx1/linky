@@ -7,6 +7,9 @@ import * as cookieParser from 'cookie-parser';
 import * as expressSession from 'express-session';
 import * as passport from 'passport';
 
+import * as uuidRandom from 'uuid/v4';
+import { sendVerifyEmail } from './email/verify';
+
 passport.use(
   new Strategy((username, password, done) => {
     const failed = () => done('Bad login', null, { message: 'Bad login' });
@@ -51,7 +54,21 @@ passport.deserializeUser((id, done) => {
 });
 
 export function authenticated(request, response, next) {
-  if (request.user) {
+  const user: User = request.user;
+  if (user) {
+    if (!user.activated) {
+      response.send(403, 'User not verified');
+      return;
+    }
+
+    return next();
+  }
+  response.send(401, 'User not authenticated');
+}
+
+export function checkLogin(request, response, next) {
+  const user: User = request.user;
+  if (user) {
     return next();
   }
   response.send(401, 'User not authenticated');
@@ -70,11 +87,14 @@ const signup = (req: Request, res: Response) => {
       newUser.username = username;
       newUser.password = password;
       newUser.email = email;
+      newUser.activated = false;
+      newUser.verifyKey = uuidRandom();
 
       await userRepo.save(newUser);
+      await sendVerifyEmail(newUser.email, newUser.verifyKey);
     })
-    .then(() => res.status(201).send('created'), () => res.status(400).send())
-    .catch(() => res.status(400).send('error'));
+    .then(() => res.status(201).send('created'))
+    .catch(err => res.status(400).send(err));
 };
 
 export function configureApp(

@@ -13,6 +13,8 @@ export const repositionBookmark = (
   getConnection().transaction(async manager => {
     const bookmarkStore = manager.getRepository(Bookmark);
     const bookmark = await bookmarkStore.findOneById(id);
+    if (bookmark.ownerId !== user.id) throw 'Not the owner!';
+
     bookmark.position = newPosition;
 
     await manager.query(updatePositionsQuery, [newPosition, user.id, id]);

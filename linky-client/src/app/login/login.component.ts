@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import LinkyClient from '../../api/linkyClient';
+import { LinkyClient, handleRequestReject } from '../../api/linkyClient';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -30,15 +30,10 @@ export class LoginComponent implements OnInit {
           username: this.usernameControl.value,
           password: this.passwordControl.value
         }
-      },
-      (error, resp) => {
-        if (error) {
-          console.error(error);
-        } else if (resp.statusCode === 200) {
-          this.router.navigate(['/']);
-        }
       }
-    );
+    ).then(resp => {
+      this.router.navigate(['/']);
+    }).catch(handleRequestReject);
 
     console.log(resp);
   }

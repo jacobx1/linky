@@ -25,11 +25,13 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { LinkManagerComponent } from './link-manager/link-manager.component';
 import { SignupComponent } from './signup/signup.component';
+import { VerifyComponent } from './verify/verify.component';
 
 const appRoutes: Routes = [
   { path: '', component: LinkManagerComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'verify', component: VerifyComponent },
   { path: '**', redirectTo: '/' }
 ];
 
@@ -40,7 +42,8 @@ const appRoutes: Routes = [
     LinkInputComponent,
     LoginComponent,
     LinkManagerComponent,
-    SignupComponent
+    SignupComponent,
+    VerifyComponent
   ],
   imports: [
     BrowserModule,

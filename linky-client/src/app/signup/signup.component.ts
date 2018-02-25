@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import LinkyClient from '../../api/linkyClient';
+import { LinkyClient } from '../../api/linkyClient';
 
 @Component({
   selector: 'app-signup',
@@ -34,15 +34,12 @@ export class SignupComponent implements OnInit {
           password: this.passwordControl.value,
           passwordConfirm: this.passwordConfirmControl.value
         }
-      },
-      (error, resp) => {
-        if (error) {
-          console.error(error);
-        } else if (resp.statusCode === 201) {
-          this.router.navigate(['/login']);
-        }
       }
-    );
+    ).then(resp => {
+      if (resp.statusCode === 201) {
+        this.router.navigate(['/login']);
+      }
+    }).catch(console.error);
 
     console.log(resp);
   }
