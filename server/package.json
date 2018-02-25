@@ -11,6 +11,7 @@
    "license": "MIT",
    "dependencies": {
       "aws-sdk": "^2.202.0",
+      "bcrypt": "^1.0.3",
       "body-parser": "^1.18.2",
       "cheerio": "^1.0.0-rc.2",
       "compression": "^1.7.1",
@@ -30,6 +31,7 @@
       "uuid": "^3.2.1"
    },
    "devDependencies": {
+      "@types/bcrypt": "^1.0.0",
       "@types/body-parser": "^1.16.8",
       "@types/cheerio": "^0.22.7",
       "@types/compression": "0.0.35",

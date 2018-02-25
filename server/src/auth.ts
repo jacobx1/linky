@@ -9,6 +9,7 @@ import * as passport from 'passport';
 
 import * as uuidRandom from 'uuid/v4';
 import { sendVerifyEmail } from './email/verify';
+import * as bcrypt from 'bcrypt';
 
 passport.use(
   new Strategy((username, password, done) => {
@@ -17,13 +18,12 @@ passport.use(
 
     const userRepo = connection.getRepository(User);
     userRepo
-      .findOne({ username, password })
-      .then(user => {
-        if (user) {
-          done(null, user);
-        } else {
-          failed();
-        }
+      .findOne({ username })
+      .then(async user => {
+        const matched = await bcrypt.compare(password, user.password);
+        if (!matched)
+          throw 'Password is invalid';
+        done(null, user);
       })
       .catch(error => {
         failed();
@@ -85,7 +85,7 @@ const signup = (req: Request, res: Response) => {
 
       const newUser = userRepo.create();
       newUser.username = username;
-      newUser.password = password;
+      newUser.password = await bcrypt.hash(password, 10);
       newUser.email = email;
       newUser.activated = false;
       newUser.verifyKey = uuidRandom();
